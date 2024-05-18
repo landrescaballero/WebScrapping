@@ -1,4 +1,3 @@
-import fs from 'fs';
 import { chromium } from 'playwright';
 
 async function getMercadoLibre(product) {
@@ -19,32 +18,8 @@ async function getMercadoLibre(product) {
     await page.click("#cb1-edit");
     await page.keyboard.type(product);
     await page.keyboard.press('Enter');
+
     // Espera a que la página de resultados de búsqueda esté lista
-    await page.waitForSelector('.andes-dropdown__trigger');
-
-    await page.waitForTimeout(2000); // Espera 1 segundo (puedes ajustar el tiempo según sea necesario)
-
-    // Haz clic en el filtro de ordenar
-    await page.click('.andes-dropdown__trigger');
-
-
-    // Espera un momento para que la página procese la acción
-
-    // Continúa con las siguientes acciones
-
-
-    // Espera a que aparezcan las opciones de orden
-    await page.waitForSelector('#\\:R2m55e6\\:\\-menu-list-option-price_asc');
-
-    // Selecciona la opción de ordenar por precio ascendente
-    await page.click("#\\:R2m55e6\\:\\-menu-list-option-price_asc");
-
-    // Espera a que la página se recargue con los resultados ordenados
-    await page.waitForSelector('a[title="Nuevo"]');
-    // Haz clic en el filtro "Nuevo"
-    await page.click('a[title="Nuevo"]');
-
-    // Espera a que la página se recargue con los resultados filtrados por "Nuevo"
     await page.waitForLoadState('domcontentloaded')
 
 
@@ -68,11 +43,15 @@ async function getMercadoLibre(product) {
       if (title.toUpperCase().includes(product.toUpperCase())) {
         productos.push({ title, url, imageUrl, price: priceNumber });
       }
-      if (productos.length === 3) {
+      if (productos.length === 5) {
         break;
       }
     }
 
+    //tomar solo los 3 productos mas baratos de productos[]
+    productos.sort((a, b) => a.price - b.price);
+    productos.splice(3, productos.length - 3);
+    
 
 
     // Cierra el navegador

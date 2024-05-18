@@ -1,14 +1,26 @@
 import { chromium } from 'playwright';
 import getMercadoLibre from './mercado-libre.js';
+import getExito from './exito.js';
 
 
 //async funtion autocalled
 (async () => {
   const productToSearch = 'iphone 14'
-  console.log('Buscando productos en Mercado Libre');
-  const getFromMercadoLibre = await getMercadoLibre(productToSearch);
-  console.log('Datos obtenidos correctamente');
-  console.log(getFromMercadoLibre);
+
+  //* Mercadolibre
+  // console.log('Buscando productos en Mercado Libre');
+  // const getFromMercadoLibre = await getMercadoLibre(productToSearch);
+  // console.log('Datos obtenidos correctamente de Mercado Libre');
+  // console.log(getFromMercadoLibre);
+
+
+  //* Exito
+  console.log('Buscando productos en Exito');
+  const getFromExito = await getExito(productToSearch);
+  console.log('Datos obtenidos correctamente de Exito');
+  (getFromExito.error) 
+  ? console.log(getFromExito.error) 
+  : console.log(getFromExito);
 })();
 
 
