@@ -51,7 +51,7 @@ async function getMercadoLibre(product) {
     //tomar solo los 3 productos mas baratos de productos[]
     productos.sort((a, b) => a.price - b.price);
     productos.splice(3, productos.length - 3);
-    
+
 
 
     // Cierra el navegador

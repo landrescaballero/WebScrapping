@@ -66,7 +66,7 @@ async function getExito(product) {
     await browser.close();
     // Retorna un mensaje de éxito
     return {
-      msg: 'Datos obtenidos correctamente', 
+      msg: 'Datos obtenidos correctamente',
       productos,
     };
   } catch (error) {
