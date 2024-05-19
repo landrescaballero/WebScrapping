@@ -52,7 +52,7 @@ async function getOlimpica(product) {
 
         }
 
-        console.log(productos);
+        // console.log(productos);
 
         //tomar solo los 3 productos mas baratos de productos[]
         productos.sort((a, b) => a.price - b.price);

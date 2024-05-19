@@ -3,6 +3,7 @@ import getMercadoLibre from './mercado-libre.js';
 import getExito from './exito.js';
 import getAlkosto from './alkosto.js';
 import getOlimpica from './olimpica.js';
+import getFalabella from './falabella.js';
 
 
 //async funtion autocalled
@@ -33,10 +34,19 @@ import getOlimpica from './olimpica.js';
   // : console.log(getFromAlkosto);
 
   //* Olimpica
-  console.log('Buscando productos en Alkosto');
-  const getFromOlimpica = await getOlimpica(productToSearch);
-  console.log('Datos obtenidos de Olimpica');
-  (getFromOlimpica.error)
-    ? console.log(getFromOlimpica.error)
-    : console.log(getFromOlimpica);
+  // console.log('Buscando productos en Olimpica');
+  // const getFromOlimpica = await getOlimpica(productToSearch);
+  // console.log('Datos obtenidos de Olimpica');
+  // (getFromOlimpica.error)
+  //   ? console.log(getFromOlimpica.error)
+  //   : console.log(getFromOlimpica);
+  
+  //* Falabella
+  console.log('Buscando productos en Falabella');
+  const getFromFalabella = await getFalabella(productToSearch);
+  console.log('Datos obtenidos de Falabella');
+  (getFromFalabella.error)
+    ? console.log(getFromFalabella.error)
+    : console.log(getFromFalabella);
+    
 })();
