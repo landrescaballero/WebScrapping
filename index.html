@@ -13,9 +13,18 @@
     <h1>Comparador de Productos</h1>
     <form id="search-form">
       <input type="text" id="search-input" placeholder="Buscar producto...">
-      <button type="submit">Buscar</button>
+      <button type="submit" id="search-button">Buscar</button>
     </form>
   </header>
+
+
+  <!-- Botones de paginación -->
+  <div id="paginacion">
+    <button onclick="searchProducts(1)">Página 1</button>
+    <button onclick="searchProducts(2)">Página 2</button>
+    <button onclick="searchProducts(3)">Página 3</button>
+  </div>
+
 
   <main>
     <div id="results">
