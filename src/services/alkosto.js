@@ -1,14 +1,15 @@
 import { chromium } from "playwright";
 
-async function getAlkosto(product) {
+export const getAlkosto = async (product) => {
     if (typeof product !== 'string') {
         return {
             error: 'El producto debe ser un string',
+            status: 400,
         };
     }
     const browser = await chromium.launch({
-        headless: false,
-        slowMo: 50,
+        // headless: false,
+        // slowMo: 50,
     });
     const page = await browser.newPage();
     try {
@@ -28,6 +29,13 @@ async function getAlkosto(product) {
         // Selecciona todos los elementos de producto
         const products = await page.$$('.ais-InfiniteHits-item');
 
+        if (products.length === 0) {
+            return {
+                error: 'No se encontraron productos',
+                status: 404,
+            };
+        }
+
         // Extrae información de los productos
         const productos = [];
         for (const element of products) {
@@ -38,10 +46,16 @@ async function getAlkosto(product) {
             const price = await element.$eval('.product__item__information__price .product__price--discounts__price .price', el => el.innerText.trim());
             const priceString = price.replace('$', '').replace(/\./g, '');
             const priceNumber = parseInt(priceString);
-            productos.push({ title, url, imageUrl, price: priceNumber });
+            productos.push({ title, url, imageUrl, price: priceNumber, page: 'Alkosto' });
             if (productos.length >= 5) {
                 break;
             }
+        }
+        if (productos.length === 0) {
+            return {
+                error: 'No se encontraron productos',
+                status: 404,
+            };
         }
         //console.log("productos antes de sortear:", productos);
         //tomar solo los 3 productos mas baratos de productos[]
@@ -53,16 +67,15 @@ async function getAlkosto(product) {
         await browser.close();
         // Retorna un mensaje de éxito
         return {
-            msg: 'Datos obtenidos correctamente',
             productos,
+            status: 200,
         };
     } catch (error) {
         // Cierra el navegador
         await browser.close();
         return {
             error: `Error al obtener los datos: ${error}`,
+            status: 500,
         }
     }
 }
-
-export default getAlkosto;

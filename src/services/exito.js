@@ -4,6 +4,7 @@ async function getExito(product) {
   if (typeof product !== 'string') {
     return {
       error: 'El producto debe ser un string',
+      status: 400,
     };
   }
   const browser = await chromium.launch({
@@ -25,11 +26,19 @@ async function getExito(product) {
     // Espera a que los resultados carguen, ajusta el selector y el tiempo según sea necesario
     await page.waitForSelector('[data-testid="store-product-card"]');
 
+    await page.waitForLoadState('networkidle');
+
     // Selecciona todos los elementos con data-testid="store-product-card"
     const products = await page.$$('[data-testid="store-product-card"]');
     // const products = await page.$$('div');
     // console.log('lenght:',products.length);
 
+    if (products.length === 0) {
+      return {
+        error: 'No se encontraron productos',
+        status: 404,
+      };
+    }
     // Iterar sobre cada elemento para extraer la información
     const productos = [];
     for (const element of products) {
@@ -50,11 +59,18 @@ async function getExito(product) {
 
 
       if (title.toUpperCase().includes(product.toUpperCase())) {
-        productos.push({ title, url, imageUrl, price: priceNumber });
+        productos.push({ title, url, imageUrl, price: priceNumber, page: 'Exito'});
       }
       if (productos.length === 5) {
         break;
       }
+    }
+
+    if(productos.length === 0){
+      return {
+        error: 'No se encontraron productos',
+        status: 404,
+      };
     }
 
     //tomar solo los 3 productos mas baratos de productos[]
@@ -66,14 +82,15 @@ async function getExito(product) {
     await browser.close();
     // Retorna un mensaje de éxito
     return {
-      msg: 'Datos obtenidos correctamente',
       productos,
+      status: 200,
     };
   } catch (error) {
     // Cierra el navegador
     await browser.close();
     return {
       error: `Error al obtener los datos: ${error}`,
+      status: 500,
     }
   }
 }

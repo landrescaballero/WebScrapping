@@ -4,6 +4,7 @@ async function getOlimpica(product) {
     if (typeof product !== 'string') {
         return {
             error: 'El producto debe ser un string',
+            status: 400,
         };
     }
     const browser = await chromium.launch({
@@ -29,6 +30,13 @@ async function getOlimpica(product) {
         // Obtener todos los elementos que coincidan con la estructura proporcionada
         const productElements = await page.$$('.vtex-search-result-3-x-galleryItem');
 
+        if (productElements.length === 0) {
+            return {
+                error: 'No se encontraron productos',
+                status: 404,
+            };
+        }
+
         // Iterar sobre cada elemento y extraer la información deseada
         const productos = [];
         for (const element of productElements) {
@@ -47,12 +55,17 @@ async function getOlimpica(product) {
             const priceNumber = parseInt(priceString);
 
 
-            productos.push({ title, url, imageUrl, price: priceNumber });
+            productos.push({ title, url, imageUrl, price: priceNumber, page: 'Olimpica'});
 
 
         }
 
-        // console.log(productos);
+        if (productos.length === 0) {
+            return {
+                error: 'No se encontraron productos',
+                status: 404,
+            };
+        }
 
         //tomar solo los 3 productos mas baratos de productos[]
         productos.sort((a, b) => a.price - b.price);
@@ -63,14 +76,15 @@ async function getOlimpica(product) {
         await browser.close();
         // Retorna un mensaje de éxito
         return {
-            msg: 'Datos obtenidos correctamente',
             productos,
+            status: 200,
         };
     } catch (error) {
         // Cierra el navegador
         await browser.close();
         return {
             error: `Error al obtener los datos: ${error}`,
+            status: 500,
         }
     }
 }

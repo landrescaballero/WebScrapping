@@ -4,6 +4,7 @@ async function getFalabella(product) {
     if (typeof product !== 'string') {
         return {
             error: 'El producto debe ser un string',
+            status: 400,
         };
     }
 
@@ -35,6 +36,7 @@ async function getFalabella(product) {
         if (productContainers.length === 0) {
             return {
                 error: 'No se encontraron productos',
+                status: 404,
             };
         }
 
@@ -61,7 +63,7 @@ async function getFalabella(product) {
                 const priceNumber = parseInt(priceString, 10);
                 console.log('Price:', priceNumber);
 
-                productos.push({ title, url, imageUrl, price: priceNumber });
+                productos.push({ title, url, imageUrl, price: priceNumber, page: 'Falabella'});
                 if (productos.length >= 5) {
                     break;
                 }
@@ -71,6 +73,12 @@ async function getFalabella(product) {
         }
 
 
+        if (productos.length === 0) {
+            return {
+                error: 'No se encontraron productos',
+                status: 404,
+            };
+        }
         // Sacar los productos que no contengan el nombre del producto
         const filteredProducts = productos.filter(producto => {
             let answer = false;
@@ -92,14 +100,15 @@ async function getFalabella(product) {
 
         // Retorna un mensaje de éxito
         return {
-            msg: 'Datos obtenidos correctamente',
             productos: top3Productos,
+            status: 200,
         };
     } catch (error) {
         // Cierra el navegador en caso de error
         await browser.close();
         return {
             error: `Error al obtener los datos: ${error}`,
+            status: 500,
         };
     }
 }

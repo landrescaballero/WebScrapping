@@ -4,6 +4,7 @@ async function getMercadoLibre(product) {
   if (typeof product !== 'string') {
     return {
       error: 'El producto debe ser un string',
+      status: 400,
     };
   }
   const browser = await chromium.launch({});
@@ -29,6 +30,13 @@ async function getMercadoLibre(product) {
 
     const productElements = await page.$$('.ui-search-result__wrapper');
 
+    if (productElements.length === 0) {
+      return {
+        error: 'No se encontraron productos',
+        status: 404,
+      };
+    }
+
     // Iterar sobre cada elemento para extraer la información
     const productos = [];
     for (const element of productElements) {
@@ -41,11 +49,18 @@ async function getMercadoLibre(product) {
 
       // Agregar la información del producto al array de productos
       if (title.toUpperCase().includes(product.toUpperCase())) {
-        productos.push({ title, url, imageUrl, price: priceNumber });
+        productos.push({ title, url, imageUrl, price: priceNumber , page: 'Mercado Libre'});
       }
       if (productos.length === 5) {
         break;
       }
+    }
+
+    if (productos.length === 0) {
+      return {
+        error: 'No se encontraron productos',
+        status: 404,
+      };
     }
 
     //tomar solo los 3 productos mas baratos de productos[]
@@ -58,14 +73,15 @@ async function getMercadoLibre(product) {
     await browser.close();
     // Retorna un mensaje de éxito
     return {
-      msg: 'Datos obtenidos correctamente',
       productos,
+      status: 200,
     };
   } catch (error) {
     // Cierra el navegador
     await browser.close();
     return {
       error: `Error al obtener los datos: ${error}`,
+      status: 500,
     }
   }
 }
