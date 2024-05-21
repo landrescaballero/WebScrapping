@@ -12,16 +12,30 @@
 
 <body>
   <div class="container">
-    <aside>
+
+    <div class="site">
+      <header>
+        <h1><b>Shopping center</b></h1>
+        <hr>
+      </header>
+
+      <div class="search">
+        <input type="text" class="search__input" placeholder="Type your text">
+        <button class="search__button">
+          <img src="assets/img/busqueda.svg" alt="Search icon" class="search__icon" 
+          onclick="buscar(), searchProducts(1)">
+        </button>
+      </div>
+
       <div class="filters">
         <div class="dropdown">
           <label for="sort-by" class="select">Ordenar por:
             <select id="sort-by">
-              <option value="" disabled selected>Select option</option>
-              <option value="price-asc">Price: Low to High</option>
-              <option value="price-desc">Price: High to Low</option>
-              <option value="name-asc">Name: A to Z</option>
-              <option value="name-desc">Name: Z to A</option>
+              <option value="" disabled selected>Seleccionar opción</option>
+              <option value="price-asc">Precio: Menor a mayor</option>
+              <option value="price-desc">Price: Mayor a menor</option>
+              <option value="name-asc">Nombre: A a la Z</option>
+              <option value="name-desc">Nombre: Z a la A</option>
             </select>
           </label>
         </div>
@@ -37,39 +51,6 @@
           </label>
         </div>
       </div>
-      <div class="search">
-        <input type="text" class="search__input" placeholder="Type your text">
-        <button class="search__button">
-          <img src="assets/img/busqueda.svg" alt="Search icon" class="search__icon" 
-          onclick="buscar(), searchProducts(1)">
-        </button>
-      </div>
-      <div class="brands">
-        <h2>Ir a las páginas fuente</h2>
-        <a class="button__brand" target="_blank" href="https://www.mercadolibre.com.co/"><img
-            src="assets/img/logo-mercado.png" alt="mercado libre" class="img__brand">Mercado Libre</a>
-
-        <a class="button__brand" target="_blank" href="https://www.exito.com/"><img src="assets/img/logo-exito.png"
-            alt="exito" class="img__brand">Exito</a>
-
-            <a class="button__brand" target="_blank" href="https://www.alkosto.com/"><img
-              src="assets/img/logo-alkosto.png" alt="alkoso" class="img__brand">Alkosto</a>
-
-              <a class="button__brand" target="_blank" href="https://www.olimpica.com/"><img
-                src="assets/img/logo-olimpica.png" alt="olimpica" class="img__brand">Olimpica</a>
-
-        <a class="button__brand" target="_blank" href="https://www.falabella.com.co/"><img
-            src="assets/img/logo-falabella.png" alt="falabella" class="img__brand">Falabella</a>
-        
-      </div>
-    </aside>
-
-
-    <div class="site">
-      <header>
-        <h1>Shopping center</h1>
-        <hr>
-      </header>
 
       <main class="main-content">
         <div class="product-card">
@@ -157,15 +138,36 @@
       <hr>
       <!-- Botones de paginación -->
       <div id="paginacion">
-        <button onclick="searchProducts(1)">Página 1</button>
-        <button onclick="searchProducts(2)">Página 2</button>
-        <button onclick="searchProducts(3)">Página 3</button>
+        <button onclick="searchProducts(1)">1</button>
+        <button onclick="searchProducts(2)">2</button>
+        <button onclick="searchProducts(3)">3</button>
       </div>
-
 
       <footer>
       </footer>
     </div>
+
+    <aside>
+      
+      <div class="brands">
+        <h2>Ir a las páginas fuente</h2>
+        <a class="button__brand" target="_blank" href="https://www.mercadolibre.com.co/"><img
+            src="assets/img/logo-mercado.png" alt="mercado libre" class="img__brand">Mercado Libre</a>
+
+        <a class="button__brand" target="_blank" href="https://www.exito.com/"><img src="assets/img/logo-exito.png"
+            alt="exito" class="img__brand">Exito</a>
+
+            <a class="button__brand" target="_blank" href="https://www.alkosto.com/"><img
+              src="assets/img/logo-alkosto.png" alt="alkoso" class="img__brand">Alkosto</a>
+
+              <a class="button__brand" target="_blank" href="https://www.olimpica.com/"><img
+                src="assets/img/logo-olimpica.png" alt="olimpica" class="img__brand">Olimpica</a>
+
+        <a class="button__brand" target="_blank" href="https://www.falabella.com.co/"><img
+            src="assets/img/logo-falabella.png" alt="falabella" class="img__brand">Falabella</a>
+        
+      </div>
+    </aside>
   </div>
 </body>
 
