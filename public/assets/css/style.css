@@ -18,32 +18,33 @@ body {
     width: 25%;
 }
 
-.container aside .filters {
+.container .site .filters {
     padding: 0 20px;
-    margin-top: 30px;
+    margin-top: 10px;
+    display: flex;
 }
 
-.container aside .filters .dropdown {
+.container .site .filters .dropdown {
     display: flex;
     flex-wrap: wrap;
     padding: 5px 20px;
     border: #efe7f3 1px solid;
-    margin-bottom: 10px;
+    margin: 10px;
     border-radius: 10px;
     background: #efe7f3;
     justify-content: center;
     width: fit-content;
 }
 
-.container aside .filters .dropdown label {
+.container .site .filters .dropdown label {
     margin-right: 10px;
 }
 
-.container aside .filters .dropdown .select {
+.container .site .filters .dropdown .select {
     min-width: 200px;
 }
 
-.container aside .filters .dropdown .select select {
+.container .site .filters .dropdown .select select {
     border: none;
     border-radius: 5px;
     background: #efe7f3;
@@ -52,18 +53,23 @@ body {
     font-size: 14px;
 }
 
-.container aside .search {
+.container .site .filters .dropdown .select select:hover {
+    background: #c4c4da;
+}
+
+.container .site .search {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
     text-align: center;
-    margin: 20px;
+    margin-top: 20px;
+    margin-bottom: 10px;
     background: #efe7f3;
     border-radius: 10px;
 }
 
-.container aside .search .search__input {
+.container .site .search .search__input {
     font-family: inherit;
     font-size: inherit;
     background-color: #efe7f3;
@@ -79,22 +85,22 @@ body {
     outline: none;
 }
 
-.container aside .search .search__input::-webkit-input-placeholder {
+.container .site .search .search__input::-webkit-input-placeholder {
     font-weight: 100;
     color: #7f4e97;
 }
 
-.container aside .search .search__button {
+.container .site .search .search__button {
     background: #efe7f3;
     border: none;
     margin-right: 5px;
 }
 
-.container aside .search .search__button:hover {
+.container .site .search .search__button:hover {
     cursor: pointer;
 }
 
-.container aside .search .search__icon {
+.container .site .search .search__icon {
     height: 2em;
     width: 2em;
     fill: #b4b4b4;
@@ -113,13 +119,17 @@ body {
 .container .brands .button__brand {
     padding: 10px;
     background: #efe7f3;
-    border: none;
+    border: #cedcdc 2px solid;
     border-radius: 10px;
     margin-bottom: 10px;
     text-decoration: none;
     color: #000;
     display: flex;
     align-items: center;
+}
+
+.container .brands .button__brand:hover{
+    background: #eff9f9;
 }
 
 .container .brands .button__brand .img__brand {
@@ -132,6 +142,10 @@ body {
 .container .site{
     margin: 20px 30px;
     width: 75%;
+}
+
+header{
+    font-size: 24px;
 }
 
 .container .site .main-content{
@@ -181,10 +195,6 @@ body {
     display: flex;
 }
 
-.container .site .main-content .product-card .product-info .source_logo:hover{
-    background-color: #e8faf8;
-}
-
 .container .site .main-content .product-card .product-info .button{
     display: flex;
     align-items: center;
@@ -201,6 +211,11 @@ body {
     font-weight: bold;
 }
 
+.container .site .main-content .product-card .product-info .button:hover{
+    background-color: #e8faf8;
+}
+
+
 
 .second{
     color: #7f4e97;
@@ -210,7 +225,8 @@ body {
 hr{
     border: 1px;
     height: 2px;
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.2));
+    margin: 10px;
 }
 
 
