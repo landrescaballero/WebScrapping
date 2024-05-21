@@ -1,6 +1,6 @@
 import { chromium } from 'playwright';
 
-async function getExito(product) {
+export const getExito = async (product) => {
   if (typeof product !== 'string') {
     return {
       error: 'El producto debe ser un string',
@@ -59,14 +59,14 @@ async function getExito(product) {
 
 
       if (title.toUpperCase().includes(product.toUpperCase())) {
-        productos.push({ title, url, imageUrl, price: priceNumber, page: 'Exito'});
+        productos.push({ title, url, imageUrl, price: priceNumber, page: 'Exito' });
       }
       if (productos.length === 5) {
         break;
       }
     }
 
-    if(productos.length === 0){
+    if (productos.length === 0) {
       return {
         error: 'No se encontraron productos',
         status: 404,
@@ -95,4 +95,3 @@ async function getExito(product) {
   }
 }
 
-export default getExito;

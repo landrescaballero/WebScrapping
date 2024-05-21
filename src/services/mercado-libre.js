@@ -1,6 +1,6 @@
 import { chromium } from 'playwright';
 
-async function getMercadoLibre(product) {
+export const getMercadoLibre = async (product) => {
   if (typeof product !== 'string') {
     return {
       error: 'El producto debe ser un string',
@@ -49,7 +49,7 @@ async function getMercadoLibre(product) {
 
       // Agregar la información del producto al array de productos
       if (title.toUpperCase().includes(product.toUpperCase())) {
-        productos.push({ title, url, imageUrl, price: priceNumber , page: 'Mercado Libre'});
+        productos.push({ title, url, imageUrl, price: priceNumber, page: 'Mercado Libre' });
       }
       if (productos.length === 5) {
         break;
@@ -85,5 +85,3 @@ async function getMercadoLibre(product) {
     }
   }
 }
-
-export default getMercadoLibre;

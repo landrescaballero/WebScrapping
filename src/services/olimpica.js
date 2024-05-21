@@ -1,6 +1,6 @@
 import { chromium } from "playwright";
 
-async function getOlimpica(product) {
+export const getOlimpica = async (product) => {
     if (typeof product !== 'string') {
         return {
             error: 'El producto debe ser un string',
@@ -55,7 +55,7 @@ async function getOlimpica(product) {
             const priceNumber = parseInt(priceString);
 
 
-            productos.push({ title, url, imageUrl, price: priceNumber, page: 'Olimpica'});
+            productos.push({ title, url, imageUrl, price: priceNumber, page: 'Olimpica' });
 
 
         }
