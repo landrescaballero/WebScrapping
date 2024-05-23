@@ -10,22 +10,10 @@ export const getMercadoLibre = async (product) => {
   const browser = await chromium.launch({});
   const page = await browser.newPage();
   try {
-    await page.goto('https://www.mercadolibre.com.co/');
-
-    // Espera a que el campo de búsqueda esté listo
-    await page.waitForSelector('#cb1-edit');
-
-    // Ingresa el producto en el campo de búsqueda y presiona Enter
-    await page.click("#cb1-edit");
-    await page.keyboard.type(product);
-    await page.keyboard.press('Enter');
+    await page.goto(`https://listado.mercadolibre.com.co/${product}`);
 
     // Espera a que la página de resultados de búsqueda esté lista
-    await page.waitForLoadState('domcontentloaded')
-
-
-    await page.waitForFunction(() => document.querySelector('img.ui-search-result-image__element').complete);
-
+    await page.waitForSelector('.ui-search-layout__item')
 
 
     const productElements = await page.$$('.ui-search-result__wrapper');

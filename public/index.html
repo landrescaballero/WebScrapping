@@ -19,11 +19,11 @@
         <hr>
       </header>
 
-      <div class="search">
-        <input type="text" class="search__input" placeholder="Type your text">
+      <div class="search"> 
+        <input type="text" class="search__input" id="search_input" placeholder="Busca un producto">
         <button class="search__button">
-          <img src="assets/img/busqueda.svg" alt="Search icon" class="search__icon" 
-          onclick="buscar(), searchProducts(1)">
+          <img src="assets/img/busqueda.svg" alt="Search icon" class="search__icon"
+            onclick="getProducts()">
         </button>
       </div>
 
@@ -31,29 +31,85 @@
         <div class="dropdown">
           <label for="sort-by" class="select">Ordenar por:
             <select id="sort-by">
-              <option value="" disabled selected>Seleccionar opción</option>
+              <option value="" >Seleccionar opción</option>
               <option value="price-asc">Precio: Menor a mayor</option>
               <option value="price-desc">Price: Mayor a menor</option>
-              <option value="name-asc">Nombre: A a la Z</option>
-              <option value="name-desc">Nombre: Z a la A</option>
             </select>
           </label>
         </div>
         <div class="dropdown">
           <label for="filter" class="select">Filtros:
             <select id="filter">
-              <option value="" disabled selected>Select option</option>
-              <option value="price-asc">Price: Low to High</option>
-              <option value="price-desc">Price: High to Low</option>
-              <option value="name-asc">Name: A to Z</option>
-              <option value="name-desc">Name: Z to A</option>
+              <option value="" >Seleccionar opción</option>
+              <option value="Alkosto">Alkosto</option>
+              <option value="Exito">Exito</option>
+              <option value="Mercado Libre">Mercado Libre</option>
+              <option value="Falabella">Falabella</option>
+              <option value="Olimpica">Olimpica</option>
             </select>
           </label>
         </div>
       </div>
 
-      <main class="main-content">
-        <div class="product-card">
+      <main class="main-content" id="product_list">
+        <div class="empty" id="empty">
+          <div class="wrapper">
+            <div class="catContainer">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 733 673" class="catbody">
+                <path fill="#212121"
+                  d="M111.002 139.5C270.502 -24.5001 471.503 2.4997 621.002 139.5C770.501 276.5 768.504 627.5 621.002 649.5C473.5 671.5 246 687.5 111.002 649.5C-23.9964 611.5 -48.4982 303.5 111.002 139.5Z">
+                </path>
+                <path fill="#212121" d="M184 9L270.603 159H97.3975L184 9Z"></path>
+                <path fill="#212121" d="M541 0L627.603 150H454.397L541 0Z"></path>
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 158 564" class="tail">
+                <path fill="#191919"
+                  d="M5.97602 76.066C-11.1099 41.6747 12.9018 0 51.3036 0V0C71.5336 0 89.8636 12.2558 97.2565 31.0866C173.697 225.792 180.478 345.852 97.0691 536.666C89.7636 553.378 73.0672 564 54.8273 564V564C16.9427 564 -5.4224 521.149 13.0712 488.085C90.2225 350.15 87.9612 241.089 5.97602 76.066Z">
+                </path>
+              </svg>
+              <div class="text">
+                <span class="bigzzz">Z</span>
+                <span class="zzz">Z</span>
+              </div>
+            </div>
+            <div class="wallContainer">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 500 126" class="wall">
+                <line stroke-width="6" stroke="#7C7C7C" y2="3" x2="450" y1="3" x1="50"></line>
+                <line stroke-width="6" stroke="#7C7C7C" y2="85" x2="400" y1="85" x1="100"></line>
+                <line stroke-width="6" stroke="#7C7C7C" y2="122" x2="375" y1="122" x1="125"></line>
+                <line stroke-width="6" stroke="#7C7C7C" y2="43" x2="500" y1="43"></line>
+                <line stroke-width="6" stroke="#7C7C7C" y2="1.99391" x2="115.5" y1="43.0061" x1="115.5"></line>
+                <line stroke-width="6" stroke="#7C7C7C" y2="2.00002" x2="189" y1="43.0122" x1="189"></line>
+                <line stroke-width="6" stroke="#7C7C7C" y2="2.00612" x2="262.5" y1="43.0183" x1="262.5"></line>
+                <line stroke-width="6" stroke="#7C7C7C" y2="2.01222" x2="336" y1="43.0244" x1="336"></line>
+                <line stroke-width="6" stroke="#7C7C7C" y2="2.01833" x2="409.5" y1="43.0305" x1="409.5"></line>
+                <line stroke-width="6" stroke="#7C7C7C" y2="43" x2="153" y1="84.0122" x1="153"></line>
+                <line stroke-width="6" stroke="#7C7C7C" y2="43" x2="228" y1="84.0122" x1="228"></line>
+                <line stroke-width="6" stroke="#7C7C7C" y2="43" x2="303" y1="84.0122" x1="303"></line>
+                <line stroke-width="6" stroke="#7C7C7C" y2="43" x2="378" y1="84.0122" x1="378"></line>
+                <line stroke-width="6" stroke="#7C7C7C" y2="84" x2="192" y1="125.012" x1="192"></line>
+                <line stroke-width="6" stroke="#7C7C7C" y2="84" x2="267" y1="125.012" x1="267"></line>
+                <line stroke-width="6" stroke="#7C7C7C" y2="84" x2="342" y1="125.012" x1="342"></line>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- <div class="spinner-container" id="loading">
+          <div class="spinner">
+           <div class="spinner">
+            <div class="spinner">
+              <div class="spinner">
+                <div class="spinner">
+                    <div class="spinner"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> -->
+
+        <!-- <div class="product-card">
           <div class="product-img">
             <img src="assets/img/logo-mercado.png" alt="MacBook Air">
           </div>
@@ -62,85 +118,20 @@
               <h3>MacBook Air</h3>
               <p class="second">Mercado Libre</p>
               <p class="second">$999</p>
-              
+
             </div>
             <a class="button" href="#">
               Ir<img src="assets/img/logo-mercado.png" alt="Mercadolibre" class="source_logo">
             </a>
           </div>
-        </div>
-        <div class="product-card">  
-          <div class="product-img">
-            <img src="assets/img/icono.png" alt="Productos">
-          </div>
-          <div class="product-info">
-            <div class="info">
-              <h3>MacBook Air</h3>
-              <p class="second">Mercado Libre</p>
-              <p class="second">$999</p>
-              
-            </div>
-            <a class="button" href="#">
-              Ir<img src="assets/img/logo-exito.png" alt="exito" class="source_logo">
-            </a>
-          </div>
-        </div>
-        <div class="product-card">
-          <div class="product-img">
-            <img src="assets/img/icono.png" alt="Producto">
-          </div>
-          <div class="product-info">
-            <div class="info">
-              <h3>MacBook Air</h3>
-              <p class="second">Mercado Libre</p>
-              <p class="second">$999</p>
-              
-            </div>
-            <a class="button" href="#">
-              Ir<img src="assets/img/logo-alkosto.png" alt="Alkosto" class="source_logo">
-            </a>
-          </div>
-        </div>
-        <div class="product-card">
-          <div class="product-img">
-            <img src="assets/img/icono.png" alt="Producto">
-          </div>
-          <div class="product-info">
-            <div class="info">
-              <h3>MacBook Air</h3>
-              <p class="second">Mercado Libre</p>
-              <p class="second">$999</p>
-              
-            </div>
-            <a class="button" href="#">
-              Ir<img src="assets/img/logo-olimpica.png" alt="Olimpica" class="source_logo">
-            </a>
-          </div>
-        </div>
-        <div class="product-card">
-          <div class="product-img">
-            <img src="assets/img/icono.png" alt="Producto">
-          </div>
-          <div class="product-info">
-            <div class="info">
-              <h3>MacBook Air</h3>
-              <p class="second">Mercado Libre</p>
-              <p class="second">$999</p>
-              
-            </div>
-            <a class="button" href="#">
-              Ir<img src="assets/img/logo-falabella.png" alt="fallabella" class="source_logo">
-            </a>
-          </div>
-        </div>
+        </div> -->
+
       </main>
 
       <hr>
       <!-- Botones de paginación -->
       <div id="paginacion">
-        <button onclick="searchProducts(1)">1</button>
-        <button onclick="searchProducts(2)">2</button>
-        <button onclick="searchProducts(3)">3</button>
+        <!-- <button onclick="searchProducts(1)">1</button> -->
       </div>
 
       <footer>
@@ -148,27 +139,30 @@
     </div>
 
     <aside>
-      
+
       <div class="brands">
         <h2>Ir a las páginas fuente</h2>
-        <a class="button__brand" target="_blank" href="https://www.mercadolibre.com.co/"><img
-            src="assets/img/logo-mercado.png" alt="mercado libre" class="img__brand">Mercado Libre</a>
+        <div class="brands-links">
+          <a class="button__brand" target="_blank" href="https://www.alkosto.com/"><img src="assets/img/logo-alkosto.png"
+            alt="alkoso" class="img__brand"></a>
 
         <a class="button__brand" target="_blank" href="https://www.exito.com/"><img src="assets/img/logo-exito.png"
-            alt="exito" class="img__brand">Exito</a>
+            alt="exito" class="img__brand"></a>
 
-            <a class="button__brand" target="_blank" href="https://www.alkosto.com/"><img
-              src="assets/img/logo-alkosto.png" alt="alkoso" class="img__brand">Alkosto</a>
-
-              <a class="button__brand" target="_blank" href="https://www.olimpica.com/"><img
-                src="assets/img/logo-olimpica.png" alt="olimpica" class="img__brand">Olimpica</a>
+        <a class="button__brand" target="_blank" href="https://www.mercadolibre.com.co/"><img
+            src="assets/img/logo-mercado.png" alt="mercado libre" class="img__brand"></a>
 
         <a class="button__brand" target="_blank" href="https://www.falabella.com.co/"><img
-            src="assets/img/logo-falabella.png" alt="falabella" class="img__brand">Falabella</a>
-        
+            src="assets/img/logo-falabella.png" alt="falabella" class="img__brand"></a>
+
+        <a class="button__brand" target="_blank" href="https://www.olimpica.com/"><img
+            src="assets/img/logo-olimpica.png" alt="olimpica" class="img__brand"></a>
+        </div>
+
       </div>
     </aside>
   </div>
+  <script src="assets/js/main.js"></script>
 </body>
 
 </html>

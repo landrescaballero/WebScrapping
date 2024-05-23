@@ -13,21 +13,13 @@ export const getAlkosto = async (product) => {
     });
     const page = await browser.newPage();
     try {
-        await page.goto('https://www.alkosto.com/');
-
-        // Espera a que el campo de búsqueda esté listo utilizando data-testid
-        await page.waitForSelector('#js-site-search-input');
-
-        // Ingresa el producto en el campo de búsqueda y presiona Enter
-        await page.click('#js-site-search-input');
-        await page.keyboard.type(product);
-        await page.keyboard.press('Enter');
+        await page.goto(`https://www.alkosto.com/search/?text=${product}`);
 
         // Espera a que los resultados carguen
-        await page.waitForSelector('.ais-InfiniteHits-item');
+        await page.waitForSelector('.product__item__top__title');
 
         // Selecciona todos los elementos de producto
-        const products = await page.$$('.ais-InfiniteHits-item');
+        const products = await page.$$('.product__item');
 
         if (products.length === 0) {
             return {

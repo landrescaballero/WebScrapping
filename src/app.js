@@ -1,5 +1,6 @@
-import express, { Router } from 'express';
+import express from 'express';
 import path from 'path';
+import morgan from 'morgan';
 import {getAlkosto} from './services/alkosto.js';
 import {getExito} from './services/exito.js';
 import {getFalabella} from './services/falabella.js';
@@ -17,6 +18,7 @@ function main() {
     //*Middlewares
     app.use(express.json()); //? raw
     app.use(express.urlencoded({ extended: true })); //? x-www-form-urlencoded
+    app.use(morgan('dev'));
 
 
     //*Public Folder    
@@ -71,15 +73,15 @@ function main() {
     // Todas las tiendas
     app.get('/productos/:producto', async (req, res) => {
         let productos = [];
-        const productosOlimpica =await getOlimpica(req.params.producto);
         const productosAlkosto = await getAlkosto(req.params.producto);
         const productosExito = await getExito(req.params.producto);
         const productosFalabella = await getFalabella(req.params.producto);
         const productosMercadoLibre = await getMercadoLibre(req.params.producto);
-        productos = productos.concat(productosOlimpica.productos, productosAlkosto.productos, productosExito.productos, productosFalabella.productos, productosMercadoLibre.productos);
+        const productosOlimpica =await getOlimpica(req.params.producto);
+        productos = productos.concat( ...productosAlkosto.productos, ...productosExito.productos, ...productosFalabella.productos, ...productosMercadoLibre.productos, ...productosOlimpica.productos);
         let status = 200;
         if (productosOlimpica.error || productosAlkosto.error || productosExito.error || productosFalabella.error || productosMercadoLibre.error) {
-            console.log(productos.error);
+            console.log(productosOlimpica.error || productosAlkosto.error || productosExito.error || productosFalabella.error || productosMercadoLibre.error);
             status = 500;
         }
         res.status(status).json(productos);
@@ -94,9 +96,9 @@ function main() {
 
     });
 
-
-    app.listen(3000, () => {
-        console.log(`Server is running on port 3000`);
+    const port = 4000
+    app.listen(4000, () => {
+        console.log(`Server is running on port ${port}. to access go to http://localhost:${port}`);
 
     });
 

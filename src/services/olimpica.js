@@ -13,15 +13,7 @@ export const getOlimpica = async (product) => {
     });
     const page = await browser.newPage();
     try {
-        await page.goto('https://www.olimpica.com/');
-
-        // Espera a que el campo de búsqueda esté listo utilizando data-testid
-        await page.waitForSelector('input#downshift-0-input');
-
-        // Ingresa el producto en el campo de búsqueda y presiona Enter
-        await page.click('input#downshift-0-input');
-        await page.keyboard.type(product);
-        await page.keyboard.press('Enter');
+        await page.goto(`https://www.olimpica.com/${product}`);
 
 
         // Esperar a que todos los elementos estén presentes en la página

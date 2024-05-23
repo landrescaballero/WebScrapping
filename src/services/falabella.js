@@ -14,15 +14,7 @@ export const getFalabella = async (product) => {
     });
     const page = await browser.newPage();
     try {
-        await page.goto('https://www.falabella.com.co');
-
-        // Espera a que el campo de búsqueda esté listo
-        await page.waitForSelector('input#testId-SearchBar-Input');
-
-        // Ingresa el producto en el campo de búsqueda y presiona Enter
-        await page.click('input#testId-SearchBar-Input');
-        await page.keyboard.type(product);
-        await page.keyboard.press('Enter');
+        await page.goto(`https://www.falabella.com.co/falabella-co/search?Ntt=${product}`);
 
         // Espera a que todos los elementos estén presentes en la página
         await page.waitForSelector('.subTitle-rebrand');

@@ -13,15 +13,7 @@ export const getExito = async (product) => {
   });
   const page = await browser.newPage();
   try {
-    await page.goto('https://www.exito.com/');
-
-    // Espera a que el campo de búsqueda esté listo utilizando data-testid
-    await page.waitForSelector('[data-testid="store-input"]');
-
-    // Ingresa el producto en el campo de búsqueda y presiona Enter
-    await page.click('[data-testid="store-input"]');
-    await page.keyboard.type(product);
-    await page.keyboard.press('Enter');
+    await page.goto(`https://www.exito.com/s?q=${product}`);
 
     // Espera a que los resultados carguen, ajusta el selector y el tiempo según sea necesario
     await page.waitForSelector('[data-testid="store-product-card"]');
@@ -43,7 +35,7 @@ export const getExito = async (product) => {
     const productos = [];
     for (const element of products) {
       // console.log(await element.innerHTML());
-      const imageUrl = await element.$eval('a[data-testid="product-link"] img[data-fs-img="true"]', img => img.src);
+      const imageUrl = await element.$eval('img[data-fs-img="true"]', img => img.src);
 
       // Selecciona el segundo enlace con data-testid="product-link" para el título y href
       const linkElements = await element.$$('a[data-testid="product-link"]');

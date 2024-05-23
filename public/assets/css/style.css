@@ -180,10 +180,12 @@ header{
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
+    max-width: 85%;
 }
 
 .container .site .main-content .product-card .product-info .info{
     margin: 10px;
+    max-width: 75%;
 } 
 
 .container .site .main-content .product-card .product-info .source_logo {
@@ -229,7 +231,119 @@ hr{
     margin: 10px;
 }
 
+/* cat styles  */
+.empty {
+    padding: 100px 0; 
+    align-self: center;
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .wrapper {
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .catContainer {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .catbody {
+    width: 80px;
+  }
+  .tail {
+    position: absolute;
+    width: 17px;
+    top: 50%;
+    animation: tail 0.5s ease-in infinite alternate-reverse;
+    transform-origin: top;
+  }
+  @keyframes tail {
+    0% {
+      transform: rotateZ(60deg);
+    }
+    50% {
+      transform: rotateZ(0deg);
+    }
+    100% {
+      transform: rotateZ(-20deg);
+    }
+  }
+  .wall {
+    width: 300px;
+  }
+  .text {
+    display: flex;
+    flex-direction: column;
+    width: 50px;
+    position: absolute;
+    margin: 0px 0px 100px 120px;
+  }
+  .zzz {
+    color: black;
+    font-weight: 700;
+    font-size: 15px;
+    animation: zzz 2s linear infinite;
+  }
+  .bigzzz {
+    color: black;
+    font-weight: 700;
+    font-size: 25px;
+    margin-left: 10px;
+    animation: zzz 2.3s linear infinite;
+  }
+  @keyframes zzz {
+    0% {
+      color: transparent;
+    }
+    50% {
+      color: black;
+    }
+    100% {
+      color: transparent;
+    }
+  }
+  /* end cat */
 
+
+  /* loading styles  */
+  .spinner-container {
+    width: 150px;
+    height: 150px;
+    position: relative;
+    margin: 30px auto;
+    overflow: hidden;
+  }
+  
+  .spinner {
+    position: absolute;
+    width: calc(100% - 9.9px);
+    height: calc(100% - 9.9px);
+    border: 5px solid transparent;
+    border-radius: 50%;
+    border-top-color: #333;
+    animation: spin 5s cubic-bezier(0.17, 0.49, 0.96, 0.79) infinite;
+  }
+  
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+  
+    to {
+      transform: rotate(360deg);
+    }
+  }
+/* end loading */
 
 #paginacion {
     margin-top: 20px;
