@@ -6,7 +6,7 @@
 
 body {
     font-family: 'Space Grotesk', sans-serif;
-    background: #faf8fc;
+    background: #34656d;
 }
 
 .container {
@@ -16,6 +16,10 @@ body {
 .container aside {
     height: 100vh;
     width: 25%;
+    background-color: #334443;
+    border-radius: 10px;
+    color: #deece7;
+    color: #deece7;
 }
 
 .container .site .filters {
@@ -31,7 +35,7 @@ body {
     border: #efe7f3 1px solid;
     margin: 10px;
     border-radius: 10px;
-    background: #efe7f3;
+    background: #fffbdf;
     justify-content: center;
     width: fit-content;
 }
@@ -47,14 +51,14 @@ body {
 .container .site .filters .dropdown .select select {
     border: none;
     border-radius: 5px;
-    background: #efe7f3;
+    background: #cafff2;
     cursor: pointer;    
     font-family: inherit;
     font-size: 14px;
 }
 
 .container .site .filters .dropdown .select select:hover {
-    background: #c4c4da;
+  background: #a7e0d3;
 }
 
 .container .site .search {
@@ -65,14 +69,14 @@ body {
     text-align: center;
     margin-top: 20px;
     margin-bottom: 10px;
-    background: #efe7f3;
+    background: #fffbdf;
     border-radius: 10px;
 }
 
 .container .site .search .search__input {
     font-family: inherit;
     font-size: inherit;
-    background-color: #efe7f3;
+    background: #fffbdf;
     border: none;
     width: 90%;
     border-radius: 10px;
@@ -91,9 +95,11 @@ body {
 }
 
 .container .site .search .search__button {
-    background: #efe7f3;
+    background: #c6ffff;
     border: none;
+    padding: 5px;
     margin-right: 5px;
+    border-radius: 15px;
 }
 
 .container .site .search .search__button:hover {
@@ -118,7 +124,7 @@ body {
 
 .container .brands .button__brand {
     padding: 10px;
-    background: #efe7f3;
+    background: #c6eeee;
     border: #cedcdc 2px solid;
     border-radius: 10px;
     margin-bottom: 10px;
@@ -126,16 +132,18 @@ body {
     color: #000;
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 .container .brands .button__brand:hover{
-    background: #eff9f9;
+    background: #c6ffff;
 }
 
 .container .brands .button__brand .img__brand {
-    width: 15%;
-    height: 15%;
-    border-radius: 30px;
+    align-self: center;
+    width: 25%;
+    height: 25%;
+    border-radius: 20px;
     margin-right: 10px;
 }
 
@@ -146,6 +154,7 @@ body {
 
 header{
     font-size: 24px;
+    color: #deece7;
 }
 
 .container .site .main-content{
@@ -153,6 +162,8 @@ header{
     flex-direction: column;
     width: 100%;
     padding: 30px;
+    background-color: #c6ffc1;
+    border-radius: 15px;
 }
 
 .container .site .main-content .product-card{
@@ -160,6 +171,8 @@ header{
     flex-wrap: wrap;
     align-items: center;
     margin-bottom: 10px;
+    background: #fffbdf;
+    border-radius: 15px;
 }
 
 .container .site .main-content .product-card:hover{
